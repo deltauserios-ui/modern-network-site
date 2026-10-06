@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Modern Network</title>
+    <meta
+      name="description"
+      content="The Modern Network — a premium unblocked browser built for speed, focus, and freedom."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #07111f;
+        --bg-soft: #0d1b2a;
+        --panel: rgba(17, 30, 45, 0.9);
+        --panel-strong: rgba(12, 21, 31, 0.96);
+        --primary: #7c9cff;
+        --primary-2: #6de2ff;
+        --accent: #9bffb5;
+        --text: #edf6ff;
+        --muted: #a9b7c7;
+        --line: rgba(255, 255, 255, 0.09);
+        --gradient: linear-gradient(135deg, #7c9cff 0%, #6de2ff 35%, #a7f3d0 100%);
+        --shadow: 0 28px 80px rgba(7, 17, 31, 0.55);
+      }
+
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(124, 156, 255, 0.22), transparent 35%),
+          radial-gradient(circle at right top, rgba(109, 226, 255, 0.2), transparent 32%),
+          linear-gradient(180deg, #050c14 0%, #08131d 100%);
+        color: var(--text);
+      }
+
+      a { color: inherit; text-decoration: none; }
+
+      img { max-width: 100%; display: block; }
+
+      .page-shell {
+        width: min(1200px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(16px);
+        background: rgba(7, 17, 31, 0.7);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 78px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 12px;
+        background: var(--gradient);
+        box-shadow: 0 16px 32px rgba(124, 156, 255, 0.4);
+        display: grid;
+        place-items: center;
+        color: #06131f;
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .nav-links a:hover { color: var(--text); }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        padding: 0.9rem 1.35rem;
+        font-weight: 700;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        cursor: pointer;
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+      }
+
+      .button-primary {
+        background: var(--gradient);
+        color: #07131f;
+        box-shadow: 0 18px 36px rgba(109, 226, 255, 0.24);
+      }
+
+      .button-secondary {
+        background: rgba(255, 255, 255, 0.02);
+        border-color: var(--line);
+        color: var(--text);
+      }
+
+      .hero {
+        padding: 72px 0 32px;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+        gap: 44px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--primary-2);
+        border: 1px solid rgba(109, 226, 255, 0.25);
+        background: rgba(109, 226, 255, 0.05);
+        border-radius: 999px;
+        padding: 0.5rem 0.9rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 22px 0 18px;
+        font-size: clamp(2.8rem, 4vw, 5rem);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+      }
+
+      .gradient-text {
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .lead {
+        max-width: 620px;
+        font-size: 1.08rem;
+        line-height: 1.8;
+        color: var(--muted);
+        margin: 0 0 30px;
+      }
+
+      .hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+      }
+
+      .mini-stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        color: var(--muted);
+      }
+
+      .mini-stats div {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .mini-stats strong {
+        color: var(--text);
+        font-size: 1.5rem;
+        font-weight: 800;
+      }
+
+      .visual {
+        position: relative;
+        display: grid;
+        place-items: center;
+        min-height: 560px;
+      }
+
+      .visual-orb {
+        position: absolute;
+        width: 520px;
+        height: 520px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, rgba(124, 156, 255, 0.45), rgba(18, 37, 54, 0.12) 45%, rgba(8, 14, 20, 0) 72%);
+        filter: blur(8px);
+      }
+
+      .browser-window {
+        position: relative;
+        width: min(100%, 560px);
+        min-height: 420px;
+        border-radius: 28px;
+        background: rgba(10, 18, 27, 0.92);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .browser-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 18px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.01);
+      }
+
+      .traffic-lights {
+        display: flex;
+        gap: 8px;
+      }
+
+      .traffic-lights span {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: block;
+      }
+
+      .traffic-lights span:nth-child(1) { background: #ff5f57; }
+      .traffic-lights span:nth-child(2) { background: #ffbd2e; }
+      .traffic-lights span:nth-child(3) { background: #28c840; }
+
+      .url-bar {
+        width: 100%;
+        max-width: 330px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+        border-radius: 999px;
+        color: var(--muted);
+        text-align: center;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        font-size: 0.86rem;
+      }
+
+      .browser-content {
+        padding: 26px 20px 20px;
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 18px;
+      }
+
+      .feature-panel {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+        padding: 18px;
+      }
+
+      .panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 0.76rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 14px;
+      }
+
+      .speed-meter {
+        width: 100%;
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.04);
+        overflow: hidden;
+        margin-top: 12px;
+      }
+
+      .speed-meter > span {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--gradient);
+        width: 86%;
+      }
+
+      .stat-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .stat-card:last-child { border-bottom: none; }
+
+      .stat-label {
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .stat-value {
+        font-weight: 800;
+        font-size: 1.35rem;
+      }
+
+      .page-section {
+        padding: 32px 0 28px;
+      }
+
+      .section-heading {
+        text-align: center;
+        margin-bottom: 28px;
+      }
+
+      .section-heading h2 {
+        margin: 0;
+        font-size: clamp(2rem, 3vw, 3rem);
+        letter-spacing: -0.05em;
+      }
+
+      .section-heading p {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 1.03rem;
+        line-height: 1.8;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .feature-card {
+        background: rgba(255,255,255,0.02);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 28px 22px;
+      }
+
+      .feature-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        background: rgba(124, 156, 255, 0.12);
+        color: var(--primary-2);
+        font-size: 1.5rem;
+        margin-bottom: 18px;
+      }
+
+      .feature-card h3 {
+        margin: 0 0 12px;
+        font-size: 1.2rem;
+      }
+
+      .feature-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .showcase {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 26px;
+        padding-top: 18px;
+      }
+
+      .showcase-panel {
+        background: rgba(255,255,255,0.02);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 24px;
+      }
+
+      .showcase-panel h3 {
+        margin-top: 0;
+        margin-bottom: 14px;
+        font-size: 1.2rem;
+      }
+
+      .bullet-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 14px;
+      }
+
+      .bullet-list li {
+        display: flex;
+        gap: 12px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .bullet-list li::before {
+        content: "✓";
+        display: inline-flex;
+        width: 22px;
+        height: 22px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(155, 255, 181, 0.12);
+        color: var(--accent);
+        font-weight: 900;
+        flex-shrink: 0;
+      }
+
+      .cta-box {
+        background: linear-gradient(135deg, rgba(124, 156, 255, 0.12), rgba(109, 226, 255, 0.1));
+        border: 1px solid rgba(124, 156, 255, 0.2);
+        border-radius: 28px;
+        padding: 30px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        margin: 18px 0 60px;
+      }
+
+      .cta-box h3 {
+        margin: 0 0 8px;
+        font-size: clamp(1.7rem, 3vw, 2.5rem);
+        letter-spacing: -0.05em;
+      }
+
+      .cta-box p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 26px 0 44px;
+        color: var(--muted);
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 980px) {
+        .hero-inner,
+        .showcase,
+        .content-grid,
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .hero {
+          padding-top: 38px;
+        }
+
+        .visual {
+          min-height: 440px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .nav-actions .button-secondary {
+          display: none;
+        }
+
+        .button {
+          width: 100%;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .cta-box {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="page-shell nav">
+        <a href="#top" class="brand" aria-label="The Modern Network home">
+          <span class="brand-mark">M</span>
+          <span>The Modern Network</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#features">Features</a>
+          <a href="#experience">Experience</a>
+          <a href="#about">About</a>
+          <a href="#launch">Launch</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="#launch" class="button button-secondary">Get Started</a>
+          <a href="#launch" class="button button-primary">Download</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top" class="page-shell">
+      <section class="hero">
+        <div class="hero-inner">
+          <div>
+            <div class="eyebrow">Unblocked browsing, reimagined</div>
+            <h1>
+              Browse beyond limits.<br />
+              <span class="gradient-text">Built for speed.</span>
+            </h1>
+            <p class="lead">
+              The Modern Network is the premium unblocked browser designed for users who want a cleaner,
+              faster, and more private digital experience — without compromise.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#launch" class="button button-primary">Launch the Browser</a>
+              <a href="#features" class="button button-secondary">Explore Features</a>
+            </div>
+
+            <div class="mini-stats">
+              <div>
+                <strong>3.4x</strong>
+                <span>Faster load times</span>
+              </div>
+              <div>
+                <strong>99.9%</strong>
+                <span>Reliable uptime</span>
+              </div>
+              <div>
+                <strong>24/7</strong>
+                <span>Always-on access</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="visual" aria-label="Product visual">
+            <div class="visual-orb"></div>
+            <div class="browser-window">
+              <div class="browser-top">
+                <div class="traffic-lights">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="url-bar">modernnetwork.com</div>
+              </div>
+
+              <div class="browser-content">
+                <div class="content-grid">
+                  <div class="feature-panel">
+                    <div class="panel-header">
+                      <span>Performance</span>
+                      <span>86%</span>
+                    </div>
+                    <div style="font-size: 2.2rem; font-weight: 800; letter-spacing: -0.06em;">8.6s</div>
+                    <div style="color: var(--muted); margin-top: 8px;">average page load</div>
+                    <div class="speed-meter"><span></span></div>
+                  </div>
+
+                  <div class="feature-panel">
+                    <div class="panel-header">
+                      <span>Security</span>
+                      <span>Protected</span>
+                    </div>
+                    <div class="stat-card">
+                      <div>
+                        <div class="stat-label">Encryption</div>
+                        <div class="stat-value">AES-256</div>
+                      </div>
+                      <div style="font-size: 1.6rem; color: var(--accent);">●</div>
+                    </div>
+                    <div class="stat-card">
+                      <div>
+                        <div class="stat-label">Private mode</div>
+                        <div class="stat-value">Enabled</div>
+                      </div>
+                      <div style="font-size: 1.6rem; color: var(--primary-2);">✦</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="page-section">
+        <div class="section-heading">
+          <h2>Everything modern users expect.</h2>
+          <p>Built for speed, clarity, and control — from the first click to the last tab.</p>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Ultra-fast browsing</h3>
+            <p>Seamless performance powered by a streamlined engine for less lag and instant access.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Smarter privacy</h3>
+            <p>Protect your activity with intelligent privacy controls and secure, distraction-free sessions.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <h3>Clean user experience</h3>
+            <p>Minimal layout, intuitive controls, and polished interactions that keep you focused.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="experience" class="page-section">
+        <div class="showcase">
+          <div class="showcase-panel">
+            <h3>Built for a sharper online life.</h3>
+            <ul class="bullet-list">
+              <li>Fast loading across everyday browsing, work, and streaming sessions.</li>
+              <li>Distraction-free interface with streamlined controls and cleaner workflow.</li>
+              <li>Secure, reliable access designed to keep your browsing private and productive.</li>
+            </ul>
+          </div>
+
+          <div class="showcase-panel" id="about">
+            <h3>Why The Modern Network?</h3>
+            <p style="margin:0; color: var(--muted); line-height:1.8;">
+              Most browsers do the basics. The Modern Network is built to feel premium at every touchpoint —
+              from the speed of the interface to the comfort of the experience. It’s a browser that respects your time,
+              attention, and privacy.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="launch" class="page-section">
+        <div class="cta-box">
+          <div>
+            <h3>Ready to experience the modern way to browse?</h3>
+            <p>Start with a faster, cleaner, and more private web experience.</p>
+          </div>
+          <a href="#top" class="button button-primary">Download Now</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="page-shell footer-inner">
+        <div class="brand">
+          <span class="brand-mark">M</span>
+          <span>The Modern Network</span>
+        </div>
+        <div>© 2026 The Modern Network</div>
+      </div>
+    </footer>
+  </body>
+</html>
